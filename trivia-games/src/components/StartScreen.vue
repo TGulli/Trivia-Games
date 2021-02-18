@@ -5,7 +5,7 @@
     <!--    <button @click=play>Play!</button>-->
     <router-link to="/questions" tag="button">Start game</router-link>
     <p>Test</p>
-    {{ questions.length }}
+    {{ questions[0] }}
 
     <ul>
       <li v-for="question of questions" :key="question.id">
@@ -22,6 +22,12 @@ import {fetchQuestions} from "@/api/questionsAPI"
 
 export default {
   name: 'StartScreen',
+  data() {
+    return {
+      error: '',
+      questions: []
+    }
+  },
   created() {
     fetchQuestions().then(questions => {
       this.questions = questions.results
@@ -30,14 +36,6 @@ export default {
       this.error = error.message
       console.error(error.message)
     })
-  },
-  data() {
-    return {
-      questions: [],
-      error: '',
-      indexCurrentQuestion: 0,
-      test: "teset"
-    }
   },
   mounted() {
     window.addEventListener("click", () => {
@@ -48,13 +46,6 @@ export default {
     play: function () {
       console.log("Hello")
       // this.$router.push("/questions")
-    },
-    getNextQuestion: function (){
-      console.log(this.test)
-      return this.test
-    },
-    getQuestion: function (index){
-      return this.questions[index]
     }
   }
 }
