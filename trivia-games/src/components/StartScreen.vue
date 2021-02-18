@@ -3,10 +3,9 @@
     <h1>Welcome to Vue Trivia App</h1>
     <p>Press the button or anywhere on the screen to play</p>
     <!--    <button @click=play>Play!</button>-->
-    <button>Play!</button> <!-- Stupid button work, because all clicks is defined in mounted -->
+    <router-link to="/questions" tag="button">Start game</router-link>
     <p>Test</p>
     {{ questions.length }}
-    {{ test }}
 
     <ul>
       <li v-for="question of questions" :key="question.id">
@@ -36,7 +35,8 @@ export default {
     return {
       questions: [],
       error: '',
-      test: "hello"
+      indexCurrentQuestion: 0,
+      test: "teset"
     }
   },
   mounted() {
@@ -46,7 +46,15 @@ export default {
   },
   methods: {
     play: function () {
-      console.log("Yaay")
+      console.log("Hello")
+      // this.$router.push("/questions")
+    },
+    getNextQuestion: function (){
+      console.log(this.test)
+      return this.test
+    },
+    getQuestion: function (index){
+      return this.questions[index]
     }
   }
 }
