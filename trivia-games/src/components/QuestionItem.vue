@@ -16,7 +16,7 @@
       </div>
    </div>
 
- <button @click="submitAnswer" >Answer</button>
+ <button v-on:click="submitAnswer; $emit('increment')">Answer</button>
 </main>
 
 </template>
@@ -34,7 +34,6 @@ export default {
 		submitAnswer:function() {
 			this.$emit('answer', {answer:this.answer});
       this.answer = null;
-      this.correctAnswer = null;
 		} }
 
     

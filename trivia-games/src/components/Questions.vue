@@ -1,7 +1,8 @@
 <template>
 <div class="questions">
- <QuestionItem v-bind:question = "getNextQuestion" />
- <QuestionItem  @submitAnswer= onClickChild>  </QuestionItem>
+  <h5>{{this.questionsInside}}</h5>
+ <QuestionItem v-bind:question = "getNextQuestion"  v-on:answer= "onClickChild"  v-on:increment="currentQuestionIndex++"/>
+
 </div>
 </template>
 
@@ -47,8 +48,8 @@ export default {
       QuestionItem
   },
    methods: {
-    onClickChild () {
-      console.log("hei") // someValue
+    onClickChild (value) {
+      console.log(value) // someValue
     } 
     }
 
