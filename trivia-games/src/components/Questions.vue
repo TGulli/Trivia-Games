@@ -1,13 +1,13 @@
 <template>
   <div class="questions">
     <ul>
-      <li v-for = "value in this.questionsInside" :key="value.question">
+      <li v-for="value in this.questionsInside" :key="value.question">
         {{ value.question }}
       </li>
     </ul>
 
-    <QuestionItem v-bind:question="getNextQuestion" v-on:answerFromChild="onClickChild" v-on:increment="currentQuestionIndex++"/>
-
+    <QuestionItem v-bind:myQuestion="getNextQuestion" v-on:answerFromChild="onClickChild"
+                  v-on:increment="currentQuestionIndex++"/>
 
     <!--    <QuestionItem @submitAnswer=onClickChild></QuestionItem>-->
   </div>
@@ -23,7 +23,7 @@ export default {
     return {
       questionsInside: [{}],
       currentQuestionIndex: 0,
-      answerFromUser: []
+      answerFromUser: [],
     }
   },
   created() {
@@ -39,7 +39,11 @@ export default {
   },
   computed: {
     getNextQuestion: function () {
-      return this.questionsInside[(this.currentQuestionIndex)]
+      return {
+        question: this.questionsInside[(this.currentQuestionIndex)].question,
+        answers: this.mergeAnswers(),
+        type: this.questionsInside[(this.currentQuestionIndex)].type
+      }
     }
   },
   components: {
@@ -51,12 +55,37 @@ export default {
       this.answerFromUser.push(value)
       console.log(this.answerFromUser) // someValue
     },
-    // getNextQuestion: function () {
-    //   return this.questionsInside[this.currentQuestionIndex]
-    // }
+    mergeAnswers() {
+      let mergedAnswers = []
+      if (this.questionsInside[(this.currentQuestionIndex)].incorrect_answers != null){
+        console.log(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers)
+        for (let i = 0; i < this.questionsInside[(this.currentQuestionIndex)].incorrect_answers.length; i++) {
+          mergedAnswers.push(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers[i])
+        }
+        mergedAnswers.push(this.questionsInside[(this.currentQuestionIndex)].correct_answer)
+      }
+
+      return this.shuffle(mergedAnswers)
+    },
+    shuffle(array) { // TODO: Make own random shuffle
+      let currentIndex = array.length, temporaryValue, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
+
+      return array;
+    }
   }
-
-
 }
 </script>
 
