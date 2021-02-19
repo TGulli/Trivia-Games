@@ -1,18 +1,13 @@
 <template>
 <div class="questions">
-    <h4>Questions</h4>
-    <h5>{{getNextQuestion.question}}</h5>
-
-<!--  <ul>-->
-<!--    <li v-for="question of questions" :key="question.id">-->
-<!--      {{ question.question }}-->
-<!--    </li>-->
-<!--  </ul>-->
+ <QuestionItem v-bind:question = "getNextQuestion" />
+ <QuestionItem  @submitAnswer= onClickChild>  </QuestionItem>
 </div>
 </template>
 
 <script>
 import {fetchQuestions} from "@/api/questionsAPI";
+import QuestionItem from "@/components/QuestionItem"
 
 export default {
   name: 'Questions',
@@ -43,11 +38,21 @@ export default {
       console.log(typeof this.questionsInside[(this.currentQuestionIndex)])
 
       return this.questionsInside[(this.currentQuestionIndex)]
-    },
+    }
     // getQuestion: function (index){
     //   return this.questions[index]
     // }
-  }
+  },
+  components: {
+      QuestionItem
+  },
+   methods: {
+    onClickChild () {
+      console.log("hei") // someValue
+    } 
+    }
+
+
 }
 </script>
 
