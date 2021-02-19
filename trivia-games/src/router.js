@@ -13,9 +13,9 @@ const routes = [
         component: Results
     },
     {
-        path: '/questions',
+        path: '/questions/:id',
         component: Questions
-    }
+    } //this.$route.params.id
 ]
 
 const router = new VueRouter({ routes })

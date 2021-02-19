@@ -1,7 +1,9 @@
 <template>
 <div class="questions">
     <h4>Questions</h4>
-    <h5>{{getNextQuestion.question}}</h5>
+    <h5>{{question}}</h5>
+<!--    <div v-if="question" class="card-text alert alert-warning" v-html="question"></div>-->
+    {{getMagicQuestion}}
 
 <!--  <ul>-->
 <!--    <li v-for="question of questions" :key="question.id">-->
@@ -12,41 +14,37 @@
 </template>
 
 <script>
-import {fetchQuestions} from "@/api/questionsAPI";
+// import question from "@/components/StartScreen";
+// import StartScreen from "@/components/StartScreen";
 
 export default {
   name: 'Questions',
+  props: ['question'],
   data() {
     return {
-      question: '',
-      questionsInside: [{}],
-      currentQuestionIndex: 0
+      myQuestion: {},
+      testQuestion: String
+    }
+  },
+  computed: {
+    getMagicQuestion(){
+      console.log(this.question)
+      return this.question
     }
   },
   created() {
-    fetchQuestions().then(s => {
-      this.questionsInside = s.results //Object.values(s.results)
-      // console.log(questions)
-      // console.log(typeof )
 
-    }).catch(error => {
-      this.error = error.message
-      console.error(error.message)
-    })
+    // console.log(StartScreen.methods.getQuestion(this.$route.params.id))
+    // console.log(StartScreen.props.question)
+
+    // this.myQuestion = question
   },
   mounted() {
-    console.log(this.questionsInside.length)
-    // this.question = this.getNextQuestion
-  },
-  computed: {
-    getNextQuestion: function (){
-      console.log(typeof this.questionsInside[(this.currentQuestionIndex)])
+    console.log(this.$parent.question)
+    // StartScreen.methods.getQuestion(this.$route.params.id)
 
-      return this.questionsInside[(this.currentQuestionIndex)]
-    },
-    // getQuestion: function (index){
-    //   return this.questions[index]
-    // }
+    // console.log(StartScreen.methods.getQuestion(this.$route.params.id))
+    // this.testQuestion = this.$parent.question
   }
 }
 </script>
