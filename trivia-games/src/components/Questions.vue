@@ -1,6 +1,10 @@
 <template>
 <div class="questions">
-  <h5>{{this.questionsInside}}</h5>
+ <ul>
+      <li v-for = "value in this.questionsInside" :key="value.question">
+        {{ value.question }}
+      </li>
+    </ul>
  <QuestionItem v-bind:question = "getNextQuestion"  v-on:answer= "onClickChild"  v-on:increment="currentQuestionIndex++"/>
 
 </div>

@@ -16,7 +16,7 @@
       </div>
    </div>
 
- <button v-on:click="submitAnswer; $emit('increment')">Answer</button>
+ <button v-on:click=" $emit('increment'); submitAnswer">Answer</button>
 </main>
 
 </template>
