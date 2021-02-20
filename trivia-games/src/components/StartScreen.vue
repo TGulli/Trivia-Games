@@ -4,14 +4,6 @@
     <p>Press the button or anywhere on the screen to play</p>
     <!--    <button @click=play>Play!</button>-->
     <router-link to="/questions" tag="button">Start game</router-link>
-    <p>Test</p>
-    {{ questions[0] }}
-
-    <ul>
-      <li v-for="question of questions" :key="question.id">
-        {{ question.question }}
-      </li>
-    </ul>
 
     <p v-if="error">{{ error }}</p>
   </div>

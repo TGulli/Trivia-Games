@@ -5,9 +5,9 @@
 
 
     <div v-if="myQuestion.type === 'boolean'">
-      <input type="radio" name="currentQuestion" id="trueAnswer" v-model="answer" value="true"><label
+      <input type="radio" name="currentQuestion" id="trueAnswer" v-model="answer" value="True"><label
         for="trueAnswer">True</label><br/>
-      <input type="radio" name="currentQuestion" id="falseAnswer" v-model="answer" value="false"><label
+      <input type="radio" name="currentQuestion" id="falseAnswer" v-model="answer" value="False"><label
         for="falseAnswer">False</label><br/>
     </div>
 
@@ -38,7 +38,7 @@ export default {
   methods: {
     submitAnswer: function () {
       // this.$emit('toParent', this.answer);
-      this.$emit('answerFromChild', {answer: this.answer});
+      this.$emit('answerFromChild', this.answer);
     },
     decodeHtml: function (html) {
       let txt = document.createElement("textarea");
