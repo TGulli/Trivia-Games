@@ -52,17 +52,13 @@ export default {
     })
   },
   mounted() {
-    window.addEventListener("click", () => {
+    document.querySelector('.area').addEventListener("click", () => {
       this.play()
     })
   },
   methods: {
     play: function () {
-      let path = window.location.href
-      path = path.substring(path.indexOf("#"))
-      if (path === '#/'){
-        this.$router.push("/questions")
-      }
+      this.$router.push("/questions")
     }
   }
 }
