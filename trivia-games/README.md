@@ -24,12 +24,22 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Todo-list
-Fikse routing link warnings
-Fikse at man kan trykke hvor som helst på startskjermen
-Tror det er en bug av og til at svaret ikke blir nullstilt til neste spørsmål??
-Evt. hvis tid, legge inn at man kan velge vansklighetsgrad og antall spørsmål?
+Hiba:
 
-fikse css
+
+Thomas:
+decode spørsmålene på svarside, og svaralternativene (Gjøre dette med en gang det legges inn i systemet?)
+Fikse random algoritmen til egen
+
+
+
+Til fordeling:
+Tror det er en bug av og til at svaret ikke blir nullstilt til neste spørsmål, etter to boolean
+Fikse result page layout
+Fikse at knappene lgger under hverandre på hvert svaralternativ på hvert spørsmål?
+Fikse at man må svare før man går videre til neste spørsmål
+Benytt hvit skrift, da svart skrift er vanskelig å lese
+Evt. hvis tid, legge inn at man kan velge vansklighetsgrad og antall spørsmål?
 Heroku til slutt
 Readme + kommentarer
 
