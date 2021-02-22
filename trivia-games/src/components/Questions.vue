@@ -30,7 +30,7 @@ export default {
   },
   created() {
     fetchQuestions().then(s => {
-      this.questionsInside = s.results //Object.values(s.results)
+      this.questionsInside = s.results
 
     }).catch(error => {
       this.error = error.message
@@ -41,6 +41,10 @@ export default {
   },
   computed: {
     getNextQuestion: function () {
+      if (this.currentQuestionIndex === this.questionsInside.length){
+        this.goToResults()
+        return null
+      }
       return {
         question: this.questionsInside[(this.currentQuestionIndex)].question,
         answers: this.mergeAnswers(),
@@ -86,6 +90,23 @@ export default {
       }
 
       return array;
+    },
+    goToResults(){
+      const resultQuestion = []
+      for (let i = 0; i < this.questionsInside.length; i++) {
+        resultQuestion.push({
+          question: this.questionsInside[i].question,
+          correct_answer: this.questionsInside[i].correct_answer,
+          answered: this.answerFromUser[i]})
+      }
+      console.log(resultQuestion)
+
+      this.$router.push({
+        name: 'Results',
+        params: {
+          resultQuestion: resultQuestion
+        }
+      })
     }
   }
 }
