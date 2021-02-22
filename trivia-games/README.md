@@ -28,13 +28,13 @@ Hiba:
 
 
 Thomas:
-decode spørsmålene på svarside, og svaralternativene (Gjøre dette med en gang det legges inn i systemet?)
 Fikse random algoritmen til egen
 
 
 
 Til fordeling:
 Tror det er en bug av og til at svaret ikke blir nullstilt til neste spørsmål, etter to boolean
+Fikse undefiend når en venter på at spørsmålene skal lastes inn
 Fikse result page layout
 Fikse at knappene lgger under hverandre på hvert svaralternativ på hvert spørsmål?
 Fikse at man må svare før man går videre til neste spørsmål

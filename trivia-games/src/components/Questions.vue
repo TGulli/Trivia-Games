@@ -46,7 +46,7 @@ export default {
         return null
       }
       return {
-        question: this.questionsInside[(this.currentQuestionIndex)].question,
+        question: this.decodeHtml(this.questionsInside[(this.currentQuestionIndex)].question),
         answers: this.mergeAnswers(),
         type: this.questionsInside[(this.currentQuestionIndex)].type
       }
@@ -66,9 +66,9 @@ export default {
       if (this.questionsInside[(this.currentQuestionIndex)].incorrect_answers != null){
         console.log(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers)
         for (let i = 0; i < this.questionsInside[(this.currentQuestionIndex)].incorrect_answers.length; i++) {
-          mergedAnswers.push(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers[i])
+          mergedAnswers.push(this.decodeHtml(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers[i]))
         }
-        mergedAnswers.push(this.questionsInside[(this.currentQuestionIndex)].correct_answer)
+        mergedAnswers.push(this.decodeHtml(this.questionsInside[(this.currentQuestionIndex)].correct_answer))
       }
 
       return this.shuffle(mergedAnswers)
@@ -107,6 +107,11 @@ export default {
           resultQuestion: resultQuestion
         }
       })
+    },
+    decodeHtml: function (html) {
+      let txt = document.createElement("textarea");
+      txt.innerHTML = html;
+      return txt.value;
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <main>
     
-    <h5>{{ decodeHtml(myQuestion.question) }}</h5>
+    <h5>{{ myQuestion.question }}</h5>
 
   <div class="question">
     <div v-if="myQuestion.type === 'boolean'">
@@ -40,11 +40,6 @@ export default {
     submitAnswer: function () {
       // this.$emit('toParent', this.answer);
       this.$emit('answerFromChild', this.answer);
-    },
-    decodeHtml: function (html) {
-      let txt = document.createElement("textarea");
-      txt.innerHTML = html;
-      return txt.value;
     }
   }
 }
