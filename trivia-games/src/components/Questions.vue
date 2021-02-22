@@ -1,18 +1,18 @@
 <template>
-<div class="area">
+  <div class="area">
 
-  <div class="container">
-    <h4>Question </h4>
-  <div class="questions">
-    <QuestionItem v-bind:myQuestion="getNextQuestion" v-on:answerFromChild="onClickChild"
-                  v-on:increment="currentQuestionIndex++"/>
+    <div class="container">
+      <h4>Question </h4>
+      <div class="questions">
+        <QuestionItem v-bind:myQuestion="getNextQuestion" v-on:answerFromChild="onClickChild"
+                      v-on:increment="currentQuestionIndex++"/>
 
-    <!--    <QuestionItem @submitAnswer=onClickChild></QuestionItem>-->
+        <!--    <QuestionItem @submitAnswer=onClickChild></QuestionItem>-->
+      </div>
+
+    </div>
   </div>
-    
-    </div> 
-</div>  
-  
+
 </template>
 
 <script>
@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     getNextQuestion: function () {
-      if (this.currentQuestionIndex === this.questionsInside.length){
+      if (this.currentQuestionIndex === this.questionsInside.length) {
         this.goToResults()
         return null
       }
@@ -63,7 +63,7 @@ export default {
     },
     mergeAnswers() {
       let mergedAnswers = []
-      if (this.questionsInside[(this.currentQuestionIndex)].incorrect_answers != null){
+      if (this.questionsInside[(this.currentQuestionIndex)].incorrect_answers != null) {
         console.log(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers)
         for (let i = 0; i < this.questionsInside[(this.currentQuestionIndex)].incorrect_answers.length; i++) {
           mergedAnswers.push(this.decodeHtml(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers[i]))
@@ -74,30 +74,26 @@ export default {
       return this.shuffle(mergedAnswers)
     },
     shuffle(array) { // TODO: Make own random shuffle
-      let currentIndex = array.length, temporaryValue, randomIndex;
+      const newArray = []
 
-      // While there remain elements to shuffle...
-      while (0 !== currentIndex) {
-
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+      for (let i = 0; i < array.length; i++) {
+        let randomNumber = Math.floor(Math.random() * array.length);
+        while (newArray[randomNumber] !== undefined) {
+          randomNumber = Math.floor(Math.random() * array.length);
+        }
+        newArray[randomNumber] = array[i]
       }
 
-      return array;
+      return newArray;
     },
-    goToResults(){
+    goToResults() {
       const resultQuestion = []
       for (let i = 0; i < this.questionsInside.length; i++) {
         resultQuestion.push({
           question: this.questionsInside[i].question,
           correct_answer: this.questionsInside[i].correct_answer,
-          answered: this.answerFromUser[i]})
+          answered: this.answerFromUser[i]
+        })
       }
       console.log(resultQuestion)
 
@@ -118,11 +114,13 @@ export default {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
-*{
+
+* {
   margin: 0px;
   padding: 0px;
 }
-.container{
+
+.container {
   background: rgba(255, 255, 255, 0.2);
   height: 80%;
   width: 70%;
@@ -132,22 +130,24 @@ export default {
   padding: 20px;
 
 }
-h4{
+
+h4 {
   font-family: 'Exo', sans-serif;
   font-size: 40px;
 }
-body{
+
+body {
   font-family: 'Exo', sans-serif;
 }
-.area{
-  background: #4e54c8;  
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+
+.area {
+  background: #4e54c8;
+  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
   width: 100%;
-  height:100%;  
+  height: 100%;
   margin-top: -4.5%;
 
 }
-
 
 
 </style>
