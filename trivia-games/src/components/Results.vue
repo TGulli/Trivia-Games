@@ -20,7 +20,7 @@
 
     <h4>Score : {{ calculateScore() }} </h4>
 
-    <router-link to="/questions" tag="button">Play Again</router-link>
+    <button class="button" v-on:click="newGame()">Play again</button>
 
   </div>
 </template>
@@ -36,6 +36,9 @@ export default {
   mounted() {
   },
   methods: {
+    newGame: function () {
+      this.$router.push("/questions")
+    },
     calculateScore() {
       console.log(this.resultQuestion)
       let finalScore = 100

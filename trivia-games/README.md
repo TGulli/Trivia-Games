@@ -33,6 +33,7 @@ Fikse random algoritmen til egen
 
 
 Til fordeling:
+Fikse catching hvis noe går galt?? F. eks når man går rett til results page uten å ha spilt
 Tror det er en bug av og til at svaret ikke blir nullstilt til neste spørsmål, etter to boolean
 Fikse undefiend når en venter på at spørsmålene skal lastes inn
 Fikse result page layout
