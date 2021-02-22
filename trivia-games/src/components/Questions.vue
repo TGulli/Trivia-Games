@@ -1,16 +1,18 @@
 <template>
-  <div class="questions">
-    <ul>
-      <li v-for="value in this.questionsInside" :key="value.question">
-        {{ value.question }}
-      </li>
-    </ul>
+<div class="area">
 
+  <div class="container">
+    <h4>Question </h4>
+  <div class="questions">
     <QuestionItem v-bind:myQuestion="getNextQuestion" v-on:answerFromChild="onClickChild"
                   v-on:increment="currentQuestionIndex++"/>
 
     <!--    <QuestionItem @submitAnswer=onClickChild></QuestionItem>-->
   </div>
+    
+    </div> 
+</div>  
+  
 </template>
 
 <script>
@@ -88,7 +90,38 @@ export default {
   }
 }
 </script>
-
 <style>
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+*{
+  margin: 0px;
+  padding: 0px;
+}
+.container{
+  background: rgba(255, 255, 255, 0.2);
+  height: 80%;
+  width: 70%;
+  margin-top: 5%;
+  display: inline-block;
+  border-radius: 25px;
+  padding: 20px;
+
+}
+h4{
+  font-family: 'Exo', sans-serif;
+  font-size: 40px;
+}
+body{
+  font-family: 'Exo', sans-serif;
+}
+.area{
+  background: #4e54c8;  
+  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+  width: 100%;
+  height:100%;  
+  margin-top: -4.5%;
+
+}
+
+
 
 </style>
