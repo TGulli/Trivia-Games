@@ -1,13 +1,14 @@
 <template>
-  <div class="area">
-
+  <div class="area2">
+     
     <div class="container">
-      <h4>Question </h4>
+      <!-- SHows question number -->
+      <h4>Question {{this.currentQuestionIndex +1 }} </h4>
       <div class="questions">
+        <!-- calls child component QuestionItem and send to it next question(myquestestion), gets out asnwer from user(answerFromUSer)-->
+         <!-- and increment currentQuestionindex with 1-->
         <QuestionItem v-bind:myQuestion="getNextQuestion" v-on:answerFromChild="onClickChild"
                       v-on:increment="currentQuestionIndex++"/>
-
-        <!--    <QuestionItem @submitAnswer=onClickChild></QuestionItem>-->
       </div>
 
     </div>
@@ -15,12 +16,15 @@
 
 </template>
 
-<script>
+<script scope>
+//import questionAPI so we can fetch question form api and QuestionItem so we can send and receive data
 import {fetchQuestions} from "@/api/questionsAPI";
 import QuestionItem from "@/components/QuestionItem"
 
 export default {
   name: 'Questions',
+  //Datastucture to save questionsfrom api in questioninside, currentquestionincex(to fetch right question),and a list where we save answers
+  //from user
   data() {
     return {
       questionsInside: [{}],
@@ -28,19 +32,23 @@ export default {
       answerFromUser: [],
     }
   },
+  //as the question page runs the first thing it gets is that it fetches answers from the api and sets the results to our data-structure
   created() {
     fetchQuestions().then(s => {
       this.questionsInside = s.results
 
-    }).catch(error => {
+    })//catch any errors that may come
+    .catch(error => {
       this.error = error.message
       console.error(error.message)
     })
   },
-  mounted() {
-  },
   computed: {
+    //method will return the next question from our datastructure list using the index and answer-alternatives (answers)
+    // as well as wether the answer is of type multiple or boolean
+  
     getNextQuestion: function () {
+      //if we are at the end of the questions(aka after question 10) we go the method gotoResults()
       if (this.currentQuestionIndex === this.questionsInside.length) {
         this.goToResults()
         return null
@@ -52,28 +60,33 @@ export default {
       }
     }
   },
+  //component child QuestionItem
   components: {
     QuestionItem
   },
   methods: {
+    //
     onClickChild(value) {
-      console.log(value) // someValue
+      // this method  pushes the user from user to our list
       this.answerFromUser.push(value)
-      console.log(this.answerFromUser) // someValue
     },
+    //We merge the Correct_answer alternative with the not correct ones to a list
+    //this way we don't always get the correct answer-altarnative in the same position on the html
     mergeAnswers() {
       let mergedAnswers = []
+      //as long as the incorrect answers is not null
       if (this.questionsInside[(this.currentQuestionIndex)].incorrect_answers != null) {
-        console.log(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers)
+        // we add the alertnatives to a list merged answers
         for (let i = 0; i < this.questionsInside[(this.currentQuestionIndex)].incorrect_answers.length; i++) {
           mergedAnswers.push(this.decodeHtml(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers[i]))
         }
         mergedAnswers.push(this.decodeHtml(this.questionsInside[(this.currentQuestionIndex)].correct_answer))
       }
-
+      //we return a shuffled list of alternatives
       return this.shuffle(mergedAnswers)
     },
-    shuffle(array) { // TODO: Make own random shuffle
+    //we create a random shuffled list
+    shuffle(array) { 
       const newArray = []
 
       for (let i = 0; i < array.length; i++) {
@@ -83,11 +96,14 @@ export default {
         }
         newArray[randomNumber] = array[i]
       }
-
+      //return the random list
       return newArray;
     },
-    goToResults() {
+    //method that creates a list with the question, the users answer and the correct answer , so we can send it to the /results path
+    //runs only when all the questions have been answered
+   goToResults() {
       const resultQuestion = []
+      //create and add to the list
       for (let i = 0; i < this.questionsInside.length; i++) {
         resultQuestion.push({
           question: this.questionsInside[i].question,
@@ -95,8 +111,7 @@ export default {
           answered: this.answerFromUser[i]
         })
       }
-      console.log(resultQuestion)
-
+      //push the list  as a parameter with the /results path
       this.$router.push({
         name: 'Results',
         params: {
@@ -104,6 +119,7 @@ export default {
         }
       })
     },
+    //method that parses to remove symbols
     decodeHtml: function (html) {
       let txt = document.createElement("textarea");
       txt.innerHTML = html;
@@ -112,7 +128,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scope>
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 * {
@@ -134,18 +150,22 @@ export default {
 h4 {
   font-family: 'Exo', sans-serif;
   font-size: 40px;
+   color: white;
 }
 
 body {
   font-family: 'Exo', sans-serif;
+  background: #4e54c8;
+  align-items: center;
 }
 
-.area {
+.area2 {
+  
   background: #4e54c8;
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
   width: 100%;
-  height: 100%;
-  margin-top: -4.5%;
+  height: 100vh;
+  margin-top: -5%;
+
 
 }
 

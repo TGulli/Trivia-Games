@@ -1,8 +1,9 @@
 <template>
   <div class="area">
+   
     <h1>Welcome to the BEST Vue Trivia Quiz-App </h1>
     <p>Press the button or anywhere on the screen to play</p>
-
+     <!-- This is just for an animation that makes every letter jump -->
     <h2>
       <span>q</span>
       <span>u</span>
@@ -14,7 +15,9 @@
       <span>m</span>
       <span>e</span>
     </h2>
-    <button class="button">Start game</button>
+    <!-- Press this button and we will het to /questions path-->
+    <button class="button2">Start game</button>
+    <!-- These are the 10 animated squares in the background of the frontpage -->
     <ul class="circles">
       <li></li>
       <li></li>
@@ -31,31 +34,16 @@
 </template>
 
 <script>
-import {fetchQuestions} from "@/api/questionsAPI"
 
 export default {
   name: 'StartScreen',
-  data() {
-    return {
-      error: '',
-      questions: [],
-      homeScreen: ''
-    }
-  },
-  created() {
-    fetchQuestions().then(questions => {
-      this.questions = questions.results
-      console.log(questions)
-    }).catch(error => {
-      this.error = error.message
-      console.error(error.message)
-    })
-  },
+  //mounted runs after the webpage has downloaded html and it makes sure that whereever user presses on screen  moethos this play will run
   mounted() {
     document.querySelector('.area').addEventListener("click", () => {
       this.play()
     })
   },
+  //definins method play that moves the webpage to the /question-path page
   methods: {
     play: function () {
       this.$router.push("/questions")
@@ -65,7 +53,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scope>
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 * {
@@ -75,13 +63,18 @@ export default {
 
 h1 {
   font-size: 50px;
+  color: white;
 }
-
+p{
+  color: white;
+}
+ /* area is the entire div,giving color and width and height*/
 .area {
   background: #4e54c8;
   background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
   width: 100%;
   height: 100vh;
+  margin-top: -5%;
 }
 
 .circles {
@@ -103,7 +96,7 @@ h1 {
   animation: animate 25s linear infinite;
   bottom: -150px;
 }
-
+/* we are setting the different squares to different sizes and giving them different speeds */
 .circles li:nth-child(1) {
   left: 25%;
   width: 80px;
@@ -179,7 +172,7 @@ h1 {
   animation-delay: 0s;
   animation-duration: 11s;
 }
-
+/*THis makes the squares rotate and making the borders go from sharp edges to soft ones(circle like) */
 @keyframes animate {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -192,8 +185,8 @@ h1 {
     border-radius: 50%;
   }
 }
-
-button {
+/*  giving button its size,borders,text spesifications and colorse etc */
+.button2 {
   display: inline-block;
   padding: 15px 25px;
   font-size: 24px;
@@ -206,8 +199,8 @@ button {
   border: none;
   border-radius: 15px;
   position: absolute;
-  top: 60%;
-  left: 45%;
+  top: 80%;
+  left: 43%;
 
 }
 
@@ -222,7 +215,7 @@ body {
   background: transparent;
 }
 
-/* JUMP */
+/* JUMP for the quiz time animation */
 h2 {
   cursor: default;
   position: absolute;
@@ -248,6 +241,7 @@ h2 span {
   0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
   0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
 }
+/* Giving the different lietters in "quiz time" different jumptime */
 
 h2 span:nth-child(2) {
   -webkit-animation-delay: 0.1s;
