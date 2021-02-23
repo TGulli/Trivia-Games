@@ -10,6 +10,8 @@
                       v-on:increment="currentQuestionIndex++"/>
       </div>
     </div>
+    <br>
+    <button class="button backButton" v-on:click="newGame()">Play again</button>
   </div>
 
 </template>
@@ -119,11 +121,18 @@ export default {
       let txt = document.createElement("textarea");
       txt.innerHTML = html;
       return txt.value;
-    }
+    },
+    newGame: function () {
+      this.$router.push("/")
+    },
   }
 }
 </script>
 <style>
+.backButton{
+  margin-top: 6%;
+}
+
 .container {
   background: rgba(255, 255, 255, 0.2);
   height: 80%;
