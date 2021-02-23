@@ -4,7 +4,7 @@
     <div class="container">
       <h4>Question </h4>
       <div class="questions">
-        <QuestionItem v-bind:myQuestion="getNextQuestion" v-on:answerFromChild="onClickChild"
+        <QuestionItem oneQuestion="getNextQuestion" v-on:answerFromChild="onClickChild"
                       v-on:increment="currentQuestionIndex++"/>
 
         <!--    <QuestionItem @submitAnswer=onClickChild></QuestionItem>-->
@@ -73,7 +73,7 @@ export default {
 
       return this.shuffle(mergedAnswers)
     },
-    shuffle(array) { // TODO: Make own random shuffle
+    shuffle(array) { // TODO: Make own random randomize
       const newArray = []
 
       for (let i = 0; i < array.length; i++) {
