@@ -28,7 +28,7 @@
     </div>
 
     <!-- If user clicks this button then newgame method takes them back to the questions page with new questions -->
-    <button class="button resultButton" v-on:click="newGame()">Play again</button>
+    <button class="button resultButton" v-on:click="homeMenu()">Back to home menu</button>
 
   </div>
 </template>
@@ -45,9 +45,9 @@ export default {
   mounted() {
   },
   methods: {
-    //Method newGame will start the /question path page again
-    newGame: function () {
-      this.$router.push("/questions")
+    //Method homeMenu will go back to the home page
+    homeMenu: function () {
+      this.$router.push("/")
     },
     // method calculateScore checks for each element of the list and compares users answer with the correct answer
     //if they are the same(aka user gets points) we add 10 til his scoreUser(user gets 10 points for each correct answer)

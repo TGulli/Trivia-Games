@@ -11,7 +11,7 @@
       </div>
     </div>
     <br>
-    <button class="button backButton" v-on:click="newGame()">Play again</button>
+    <button class="button backButton" v-on:click="homeMenu()">Back to home menu</button>
   </div>
 
 </template>
@@ -122,7 +122,7 @@ export default {
       txt.innerHTML = html;
       return txt.value;
     },
-    newGame: function () {
+    homeMenu: function () {
       this.$router.push("/")
     },
   }
