@@ -33,7 +33,6 @@ Thomas:
 
 Til fordeling:
 Fikse catching hvis noe går galt??
-Tror det er en bug av og til at svaret ikke blir nullstilt til neste spørsmål, etter to boolean
 Fikse result page layout
 Heroku til slutt
 Readme + kommentarer

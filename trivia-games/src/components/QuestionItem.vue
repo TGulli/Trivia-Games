@@ -22,7 +22,7 @@
       </div>
 
 
-    <button v-on:click="submitAnswer(); $emit('increment')">Answer</button>
+    <button v-on:click="submitAnswer()">Answer</button>
   </main>
 
 </template>
@@ -46,8 +46,11 @@ export default {
   },
   methods: {
     submitAnswer: function () {
-      // this.$emit('toParent', this.answer);
-      this.$emit('answerFromChild', this.answer);
+      if (this.answer !== ''){
+        this.$emit('increment')
+        this.$emit('answerFromChild', this.answer);
+        this.answer = ''
+      }
     }
   }
 }

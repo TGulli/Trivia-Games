@@ -57,6 +57,7 @@ export default {
   },
   methods: {
     onClickChild(value) {
+
       console.log(value) // someValue
       this.answerFromUser.push(value)
       console.log(this.answerFromUser) // someValue
