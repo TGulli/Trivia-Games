@@ -1,6 +1,7 @@
 <template>
   <main>
-      <h5>{{ myQuestion.question }}</h5>
+    <h5 v-if="!loading">{{ myQuestion.question }}</h5>
+    <h5 v-else>Loading question</h5>
 
       <div class="question">
         <div v-if="myQuestion.type === 'boolean'">
@@ -29,12 +30,18 @@
 export default {
   data() {
     return {
-      answer: ''
+      answer: '',
+      loading: true
     }
   },
   props: {
     myQuestion: {
       type: Object,
+    }
+  },
+  updated() {
+    if (this.myQuestion.question !== undefined){
+      this.loading = false
     }
   },
   methods: {
