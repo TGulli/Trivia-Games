@@ -1,5 +1,6 @@
 <template>
   <main>
+    <div v-if="myQuestion.question === undefined">
       <h5>{{ myQuestion.question }}</h5>
 
       <div class="question">
@@ -19,6 +20,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div v-else>
+      <h5>Loading questions...</h5>
+    </div>
 
 
     <button v-on:click="submitAnswer(); $emit('increment')">Answer</button>

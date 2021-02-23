@@ -35,7 +35,7 @@ Fikse at man må svare før man går videre til neste spørsmål
 
 
 Til fordeling:
-Fikse catching hvis noe går galt?? F. eks når man går rett til results page uten å ha spilt
+Fikse catching hvis noe går galt??
 Tror det er en bug av og til at svaret ikke blir nullstilt til neste spørsmål, etter to boolean
 Fikse result page layout
 Fikse slik at knappene ligger under hverandre på hvert svaralternativ på hvert spørsmål?
