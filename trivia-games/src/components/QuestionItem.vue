@@ -59,6 +59,9 @@ h5 {
 }
 
 .question {
+  text-align: left;
+  width: 40%;
+  margin: auto;
   font-family: 'Exo', sans-serif;
   margin-top: 2%;
 }
