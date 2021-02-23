@@ -22,3 +22,20 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Todo-list
+Hiba:
+
+
+Thomas:
+
+
+
+Til fordeling:
+Fikse catching hvis noe går galt??
+Fikse result page layout
+Heroku til slutt
+Readme + kommentarer
+
+
+.
