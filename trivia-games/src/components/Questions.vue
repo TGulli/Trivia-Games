@@ -58,14 +58,11 @@ export default {
   methods: {
     onClickChild(value) {
 
-      console.log(value) // someValue
       this.answerFromUser.push(value)
-      console.log(this.answerFromUser) // someValue
     },
     mergeAnswers() {
       let mergedAnswers = []
       if (this.questionsInside[(this.currentQuestionIndex)].incorrect_answers != null) {
-        console.log(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers)
         for (let i = 0; i < this.questionsInside[(this.currentQuestionIndex)].incorrect_answers.length; i++) {
           mergedAnswers.push(this.decodeHtml(this.questionsInside[(this.currentQuestionIndex)].incorrect_answers[i]))
         }
@@ -90,8 +87,8 @@ export default {
     goToResults() {
       const resultQuestion = []
       for (let i = 0; i < this.questionsInside.length; i++) {
-        resultQuestion.push({
-          question: this.questionsInside[i].question,
+        resultQuestion.push({ 
+          question: this.decodeHtml(this.questionsInside[i].question),
           correct_answer: this.questionsInside[i].correct_answer,
           answered: this.answerFromUser[i]
         })
