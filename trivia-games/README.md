@@ -3,13 +3,13 @@ Trivia games is an simple quiz page for quizing. Fetches 10 questions from https
 questions one by one, and gives the user multiple answer to answers. At the end of the quiz, it is a result page with the score
 and the correct answers. The result page also have play again button, if you want to play again.
 
-### Participants
+## Participants
 Hiba Benhaida and Thomas Gulli
 
-### Heroku page
-TODO
+## Heroku page
+https://newquiz-tghb.herokuapp.com/#/
 
-### Technologies
+## Technologies
 - IntelliJ IDEA
 - Javascript
 - Vue
@@ -18,38 +18,38 @@ TODO
 - CSS
 - Heroku
 
-### Files
+## Files
 
-## router.js
+### router.js
 Links the vue components based on the path.
 
 - '/' = Startscreen
 - '/questions' = Question page
 - '/Results' = Results page
 
-## main.js
+### main.js
 Starts the vue app with the given router
 
 
-## App.vue
+### App.vue
 Root of the application with style for common component in all pages, as button and background.
 
-## StartScreen.vue
+### StartScreen.vue
 Homepage with a button, where you can click the button, or anywhere else on the page to start the game.
 
 
-## Questions.vue
+### Questions.vue
 The page for all the questions. It controls the questions order, and the answer from user is saved here (For sending the answers to the result page) and gives a new question to the QuestionItem controller.
 
 
-## QuestionItem.vue
+### QuestionItem.vue
 Renders the questions, as well as the question alternatives. It has a button for sending, for moving on to next question.
 Sends the answers to the question vue page. When the Questions controller doesn't have more questions, it goes to the result page.
 
-## Result.vue
+### Result.vue
 The last page which shows the questions, what the user has answered and the correct answer.
 It also shows a score at the bottom. The user get 10 points on each question that is correct.
 It is also a button at the bottom for playing again.
 
-## questionsPI.js
+### questionsPI.js
 Fetches 10 questions from the api.
