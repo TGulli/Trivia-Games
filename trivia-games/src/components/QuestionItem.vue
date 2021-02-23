@@ -5,9 +5,9 @@
 
       <div class="question">
         <div v-if="myQuestion.type === 'boolean'">
-          <input type="radio" name="currentQuestion" id="trueAnswer" v-model="answer" value="True"><label
+          <input type="radio" name="currentQuestion" id="trueAnswer" v-model="answer" value="True" checked="false"><label
             for="trueAnswer">True</label><br/>
-          <input type="radio" name="currentQuestion" id="falseAnswer" v-model="answer" value="False"><label
+          <input type="radio" name="currentQuestion" id="falseAnswer" v-model="answer" value="False" checked="false"><label
             for="falseAnswer">False</label><br/>
         </div>
 
