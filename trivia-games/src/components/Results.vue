@@ -27,8 +27,8 @@
       <h4>No results to show. Please play the game first.</h4>
     </div>
 
-    <!-- If user clicks this button then newgame method takes them back to the questions page with new questions -->
-    <button class="button resultButton" v-on:click="homeMenu()">Back to home menu</button>
+    <!-- If user clicks this button then homeMenu method takes them back to the homepage -->
+    <button class="button resultButton" v-on:click="homeMenu()">Back to homepage</button>
 
   </div>
 </template>

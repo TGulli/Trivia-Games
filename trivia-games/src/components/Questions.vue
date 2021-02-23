@@ -11,7 +11,7 @@
       </div>
     </div>
     <br>
-    <button class="button backButton" v-on:click="homeMenu()">Back to home menu</button>
+    <button class="button backButton" v-on:click="homeMenu()">Back to homepage</button>
   </div>
 
 </template>
